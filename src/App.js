@@ -28,6 +28,18 @@ class App extends React.Component {
     };
   }
 
+  handleInputChange = event => {
+    this.setState({
+      todoList: [
+        ...this.state.todoList,
+        {
+          id: this.state.todoList.length + 1,
+          name: event.target.value
+        }
+      ]
+    });
+  };
+
   render() {
     return (
       <div className="App">
@@ -41,6 +53,7 @@ class App extends React.Component {
             aria-label="Small"
             aria-describedby="inputGroup-sizing-sm"
             style={{ width: "60%" }}
+            onChange={this.handleInputChange}
           />
         </div>
         {this.state.todoList.map(item => (
