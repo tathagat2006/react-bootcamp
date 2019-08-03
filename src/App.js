@@ -31,6 +31,18 @@ class App extends React.Component {
   render() {
     return (
       <div className="App">
+        <div
+          className="input-group-prepend mt-4"
+          style={{ justifyContent: "center" }}
+        >
+          <input
+            type="text"
+            class="form-control"
+            aria-label="Small"
+            aria-describedby="inputGroup-sizing-sm"
+            style={{ width: "60%" }}
+          />
+        </div>
         {this.state.todoList.map(item => (
           <Todolist title={item.name} />
         ))}
