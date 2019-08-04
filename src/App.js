@@ -24,17 +24,24 @@ class App extends React.Component {
           id: 3,
           name: "item4"
         }
-      ]
+      ],
+      inputValue: ""
     };
   }
 
   handleInputChange = event => {
     this.setState({
+      inputValue: event.target.value
+    });
+  };
+
+  handleOnClick = () => {
+    this.setState({
       todoList: [
         ...this.state.todoList,
         {
           id: this.state.todoList.length + 1,
-          name: event.target.value
+          name: this.state.inputValue
         }
       ]
     });
@@ -55,6 +62,7 @@ class App extends React.Component {
             style={{ width: "60%" }}
             onChange={this.handleInputChange}
           />
+          <button onClick={this.handleOnClick}>Add Todo</button>
         </div>
         {this.state.todoList.map(item => (
           <Todolist title={item.name} />
