@@ -10,19 +10,23 @@ class App extends React.Component {
       todoList: [
         {
           id: 0,
-          name: "item1"
+          name: "item1",
+          isDone: false
         },
         {
           id: 1,
-          name: "item2"
+          name: "item2",
+          isDone: false
         },
         {
           id: 2,
-          name: "item3"
+          name: "item3",
+          isDone: false
         },
         {
           id: 3,
-          name: "item4"
+          name: "item4",
+          isDone: false
         }
       ],
       inputValue: ""
@@ -41,15 +45,36 @@ class App extends React.Component {
         ...this.state.todoList,
         {
           id: this.state.todoList.length + 1,
-          name: this.state.inputValue
+          name: this.state.inputValue,
+          isDone: false
         }
       ]
+    });
+  };
+
+  handleToggle = todo => {
+    let todoList = this.state.todoList.map(item => {
+      if (item.id === todo.id) {
+        return {
+          id: item.id,
+          name: item.name,
+          isDone: !item.isDone
+        };
+      } else {
+        return {
+          item
+        };
+      }
+    });
+    this.setState({
+      todoList
     });
   };
 
   render() {
     return (
       <div className="App">
+        <div className="add-todo-header">Todo List</div>
         <div
           className="input-group-prepend mt-4"
           style={{ justifyContent: "center" }}
@@ -65,7 +90,11 @@ class App extends React.Component {
           <button onClick={this.handleOnClick}>Add Todo</button>
         </div>
         {this.state.todoList.map(item => (
-          <Todolist title={item.name} />
+          <Todolist
+            title={item.name}
+            todo={item}
+            onClick={this.handleToggle(item)}
+          />
         ))}
       </div>
     );
