@@ -71,6 +71,14 @@ class App extends React.Component {
     });
   };
 
+  handleDelete = todo => {
+    let todoList = this.state.todoList.filter(item => todo.id != item.id);
+
+    this.setState({
+      todoList
+    });
+  };
+
   render() {
     return (
       <div className="App">
@@ -94,6 +102,7 @@ class App extends React.Component {
             title={item.name}
             handleClick={this.handleToggle}
             todo={item}
+            handleDelete={this.handleDelete}
           />
         ))}
       </div>

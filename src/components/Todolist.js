@@ -13,10 +13,19 @@ class Todolist extends React.Component {
       <div>
         <li
           className={this.props.todo.isDone ? "striked" : ""}
-          onClick={todo => this.props.handleClick(this.props.todo)}
+          onClick={() => this.props.handleClick(this.props.todo)}
         >
           {this.props.title}
         </li>
+        <button
+          className="ml-2 mt-2"
+          style={{ borderRadius: "2vh" }}
+          onClick={() => {
+            this.props.handleDelete(this.props.todo);
+          }}
+        >
+          Delete
+        </button>
       </div>
     );
   }
