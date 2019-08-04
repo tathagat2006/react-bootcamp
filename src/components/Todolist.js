@@ -11,7 +11,12 @@ class Todolist extends React.Component {
   render() {
     return (
       <div>
-        <li>{this.props.title}</li>
+        <li
+          className={this.props.todo.isDone ? "striked" : ""}
+          onClick={todo => this.props.handleClick(this.props.todo)}
+        >
+          {this.props.title}
+        </li>
       </div>
     );
   }

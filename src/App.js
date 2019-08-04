@@ -55,15 +55,15 @@ class App extends React.Component {
   handleToggle = todo => {
     let todoList = this.state.todoList.map(item => {
       if (item.id === todo.id) {
+        console.log("in");
         return {
           id: item.id,
           name: item.name,
           isDone: !item.isDone
         };
       } else {
-        return {
-          item
-        };
+        console.log("out");
+        return item;
       }
     });
     this.setState({
@@ -92,8 +92,8 @@ class App extends React.Component {
         {this.state.todoList.map(item => (
           <Todolist
             title={item.name}
+            handleClick={this.handleToggle}
             todo={item}
-            onClick={this.handleToggle(item)}
           />
         ))}
       </div>
